@@ -1,6 +1,6 @@
 # lightAHRS
 
-##What is AHRS
+## What is AHRS
  
 An attitude and heading reference system (AHRS) consists of sensors on three axes that provide attitude information for aircraft, 
 including roll, pitch and yaw. These are sometimes referred to as MARG (Magnetic, Angular Rate, and Gravity). sensors and consist of  
@@ -22,5 +22,5 @@ display. AHRS can be combined with air data computers to form an "air data, atti
 additional information such as airspeed, altitude and outside air temperature.
 
 
-##Harware
+## Harware
 laghtAHRS is currently being developed on STM32f103cbt6 MCU, MPU6050 gyroscope + accelerometer and HMC5883L magnetometer. One of my main obfectives is to keep this project versatile and easily configurable.

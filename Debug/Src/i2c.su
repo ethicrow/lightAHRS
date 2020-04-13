@@ -1,0 +1,11 @@
+core_cm3.h:1499:26:__NVIC_GetPriorityGrouping	4	static
+core_cm3.h:1511:22:__NVIC_EnableIRQ	16	static
+core_cm3.h:1639:22:__NVIC_SetPriority	16	static
+core_cm3.h:1686:26:NVIC_EncodePriority	40	static
+stm32f1xx_ll_i2c.h:461:22:LL_I2C_EnableClockStretching	16	static
+stm32f1xx_ll_i2c.h:508:22:LL_I2C_DisableGeneralCall	16	static
+stm32f1xx_ll_i2c.h:550:22:LL_I2C_SetOwnAddress2	16	static
+stm32f1xx_ll_i2c.h:572:22:LL_I2C_DisableOwnAddress2	16	static
+stm32f1xx_ll_bus.h:447:22:LL_APB1_GRP1_EnableClock	24	static
+stm32f1xx_ll_bus.h:763:22:LL_APB2_GRP1_EnableClock	24	static
+i2c.c:28:6:MX_I2C1_Init	56	static

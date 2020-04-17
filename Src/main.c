@@ -25,44 +25,31 @@
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 #include "timing_service.h"
-/* USER CODE END Includes */
 
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-/* USER CODE BEGIN PFP */
+void initClockDomain();
 void Board_initGeneral();
-/* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
 void Board_initGeneral()
 {
 	time_start();
 }
-/* USER CODE END 0 */
+void MCU_init()
+{
+	LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_AFIO);
+	LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_PWR);
+	NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
+	SystemClock_Config();
+	/** NOJTAG: JTAG-DP Disabled and SW-DP Enabled
+	*/
+	LL_GPIO_AF_Remap_SWJ_NOJTAG();
+
+
+}
 
 /**
   * @brief  The application entry point.
@@ -70,59 +57,23 @@ void Board_initGeneral()
   */
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
 
-  /* USER CODE END 1 */
-  
 
-  /* MCU Configuration--------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  
-
-  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_AFIO);
-  LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_PWR);
-
-  NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
-
-  /* System interrupt init*/
-
-  /** NOJTAG: JTAG-DP Disabled and SW-DP Enabled 
-  */
-  LL_GPIO_AF_Remap_SWJ_NOJTAG();
-
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
-  /* Configure the system clock */
-  SystemClock_Config();
-
-  /* USER CODE BEGIN SysInit */
+  MCU_init();
   Board_initGeneral();
-  /* USER CODE END SysInit */
 
-  /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C1_Init();
   MX_USART1_UART_Init();
-  /* USER CODE BEGIN 2 */
 
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
 	  LL_GPIO_SetOutputPin(LED_PIN_GPIO_Port, LED_PIN_Pin);
-	  time_delayBlocking(10);
+	  time_delayBlocking(1000);
 	  LL_GPIO_ResetOutputPin(LED_PIN_GPIO_Port, LED_PIN_Pin);
-	  time_delayBlocking(10);
+	  time_delayBlocking(1000);
 
-    /* USER CODE BEGIN 3 */
   }
-  /* USER CODE END 3 */
 }
 
 /**
